@@ -3,6 +3,8 @@ import background from '../../assets/image 2.png';
 import logoText from '../../assets/logo1.png';
 import logoIcon from '../../assets/logo2.png';
 import Button from '../ui/Button';
+import { useState } from 'react';
+import TextInput from '../ui/TextInput';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -48,6 +50,7 @@ const LoginBox = styled.div`
   background: #F3ECE1;
   box-shadow: 2px 4px 9px 4px rgba(0, 0, 0, 0.25);
   border-radius: 52px;
+  padding: 40px;
   position: relative;
   display: flex;
     flex-direction: column;
@@ -64,6 +67,9 @@ const Rect = styled.div`
 `;
 
 export default function LoginPage() {
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
+
   return (
     <Wrapper>
       <Content>
@@ -71,11 +77,17 @@ export default function LoginPage() {
             <LogoText src={logoText} alt="Logo Text" />
             <LogoIcon src={logoIcon} alt="Logo Icon" />
         </LogoBox>
+
         <LoginBox>
           <Rect style={{top: '80px', left: '23px'}}/>
           <Rect style={{top: '154px', left: '23px'}}/>
           <Rect style={{top: '313px', left: '23px'}}/>
           <Rect style={{top: '387px', left: '23px'}}/>
+
+            <p style={{fontSize: '20px', marginBottom: '15px', color: '#7d7d7d'}}>아이디</p>
+          <TextInput placeholder="아이디를 입력해주세요" value={id} onChange={(e) => setId(e.target.value)} />
+            <p style={{fontSize: '20px', marginTop: '15px', color: '#7d7d7d'}}>비밀번호</p>
+          <TextInput placeholder="비밀번호를 입력해주세요" value={password} onChange={(e) => setPassword(e.target.value)} />
           <Button color="green" onClick={() => {}}>로그인</Button>
           <Button color="white" hover="#e6e3de" onClick={() => {}}>회원가입</Button>
         </LoginBox>
