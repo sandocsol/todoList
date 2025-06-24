@@ -5,6 +5,7 @@ import logoIcon from '../../assets/logo2.png';
 import Button from '../ui/Button';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import TextInput from '../ui/TextInput';
 
 const Wrapper = styled.div`
@@ -72,6 +73,23 @@ export default function LoginPage() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
+    const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/users/login', {
+        id,
+        password,
+      });
+
+      const { user_id } = response.data; // 서버에서 받은 user_id
+      localStorage.setItem('user_id', user_id); // 로컬스토리지에 저장
+      navigate(`/todo/${user_id}`); // 로그인 성공 시 투두 페이지로 이동
+
+    } catch (error) {
+      console.error('로그인 실패:', error);
+      alert('아이디 또는 비밀번호가 틀렸어요.');
+    }
+  };
+
   return (
     <Wrapper>
       <Content>
@@ -90,7 +108,7 @@ export default function LoginPage() {
           <TextInput placeholder="아이디를 입력해주세요" value={id} onChange={(e) => setId(e.target.value)} />
             <p style={{fontSize: '20px', marginTop: '15px', color: '#7d7d7d'}}>비밀번호</p>
           <TextInput placeholder="비밀번호를 입력해주세요" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <Button color="green" onClick={() => {navigate('/todo/1');}}>로그인</Button>
+          <Button color="green" onClick={handleLogin}>로그인</Button>
           <Button color="white" hover="#e6e3de" onClick={() => {navigate('/register');}}>회원가입</Button>
         </LoginBox>
       </Content>
