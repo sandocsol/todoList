@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import background from '../../assets/image 2.png'; 
 import logoText from '../../assets/logo1.png';
 import logoIcon from '../../assets/logo2.png';
+import Button from '../ui/Button';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -75,6 +76,8 @@ export default function LoginPage() {
           <Rect style={{top: '154px', left: '23px'}}/>
           <Rect style={{top: '313px', left: '23px'}}/>
           <Rect style={{top: '387px', left: '23px'}}/>
+          <Button color="green" onClick={() => {}}>로그인</Button>
+          <Button color="white" hover="#e6e3de" onClick={() => {}}>회원가입</Button>
         </LoginBox>
       </Content>
     </Wrapper>
