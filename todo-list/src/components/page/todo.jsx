@@ -5,6 +5,7 @@ import React from "react";
 import styled from "styled-components";
 
 import background from '../../assets/image 2.png'; 
+import Calendar from "../ui/Calendar";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -14,6 +15,12 @@ const Wrapper = styled.div`
   background-position: center;
   position: relative;
   overflow: hidden;
+`;
+
+const CalendarWrapper = styled.div`
+  position: absolute;
+  top: 42px;
+  left: 63px;
 `;
 
 
@@ -29,7 +36,9 @@ function Todo() {
 
   return (
     <Wrapper>
-      <h2>{user_id}님의 할 일 목록</h2>
+        <CalendarWrapper>
+          <Calendar />
+        </CalendarWrapper>
       <ul>
         {todos.map(todo => <li key={todo.id}>{todo.content}</li>)}
       </ul>
