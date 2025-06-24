@@ -7,8 +7,7 @@ function App(){
     return (
         <>
         <GlobalStyle />
-        {/* <Outlet/> */}
-          <LoginPage/>
+        <Outlet/>
         </>
     )
 }

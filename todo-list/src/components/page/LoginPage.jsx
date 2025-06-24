@@ -4,6 +4,7 @@ import logoText from '../../assets/logo1.png';
 import logoIcon from '../../assets/logo2.png';
 import Button from '../ui/Button';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import TextInput from '../ui/TextInput';
 
 const Wrapper = styled.div`
@@ -67,6 +68,7 @@ const Rect = styled.div`
 `;
 
 export default function LoginPage() {
+    const navigate = useNavigate();
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
@@ -88,8 +90,8 @@ export default function LoginPage() {
           <TextInput placeholder="아이디를 입력해주세요" value={id} onChange={(e) => setId(e.target.value)} />
             <p style={{fontSize: '20px', marginTop: '15px', color: '#7d7d7d'}}>비밀번호</p>
           <TextInput placeholder="비밀번호를 입력해주세요" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <Button color="green" onClick={() => {}}>로그인</Button>
-          <Button color="white" hover="#e6e3de" onClick={() => {}}>회원가입</Button>
+          <Button color="green" onClick={() => {navigate('/todo/1');}}>로그인</Button>
+          <Button color="white" hover="#e6e3de" onClick={() => {navigate('/register');}}>회원가입</Button>
         </LoginBox>
       </Content>
     </Wrapper>
