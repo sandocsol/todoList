@@ -80,12 +80,17 @@ function Todo() {
     fetchTodos();
   }, [user_id, selectedDate]);
 
-  const handleCheck = (todo_id, currentChecked) => {
-  axios.patch(`http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/todos/${user_id}/${todo_id}/check`, { is_checked: !currentChecked })
+const handleCheck = (todo_id, currentChecked) => {
+  axios.patch(
+    `http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/todos/${user_id}/${todo_id}/check`,
+    { is_checked: !currentChecked }  
+  )
     .then(() => {
-      fetchTodos(); // 변경 후 최신 리스트 불러오기
+      fetchTodos(); 
     })
-    .catch((err) => console.error("체크 실패", err));
+    .catch((err) => {
+      console.error("체크 실패", err);
+    });
 };
 
 const handleDelete = (todo_id) => {
