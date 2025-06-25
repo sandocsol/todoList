@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import background from '../../assets/image 2.png'; 
 import Calendar from "../ui/Calendar";
+import TextArea from "../ui/TextArea";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -29,10 +30,15 @@ const AddWrapper = styled.div`
   left: 80px;
   width: 500px;
   height: 300px;
-  padding: 20px;
+  padding: 16px;
+  padding-top: 40px;
   background: #FFFAF3;
   color: #000;
   border-radius: 56px;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+
 `;
 
 const TodoWrapper = styled.div`
@@ -63,7 +69,7 @@ function Todo() {
           <Calendar />
         </CalendarWrapper>
         <AddWrapper>
-
+            <TextArea height={160} width={400} placeholder="할 일을 입력하세요." />
         </AddWrapper>
         <TodoWrapper>
         </TodoWrapper>
