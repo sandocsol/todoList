@@ -82,7 +82,7 @@ function Todo() {
             <TextArea height={160} width={400} placeholder="할 일을 입력하세요." value={content} onChange={(e) => setContent(e.target.value)} />
             <Button style={{color: "white", backgroundColor: "#D70000", border: "none", boxShadow: '3px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 20, width: 103, height:46}}
              onClick={() => {
-              const dateString = selectedDate.toISOString().split('T')[0];
+              const dateString = selectedDate.toLocaleDateString('sv-SE');
               axios.post(`http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/todos/${user_id}`, { content, date: dateString,})
                 .then((res) => {
                   setTodos([...todos, res.data]);

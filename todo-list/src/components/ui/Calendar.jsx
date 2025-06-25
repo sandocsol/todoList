@@ -153,7 +153,6 @@ const Calendar = (props) => {
               onClick={() => {
                 const newDate = new Date(year, month, date);
                 onChange(newDate);
-                value(newDate);
               }}
               style={isSelected ? { backgroundColor: "#C8EBB3", borderRadius: "50%" } : {}}
               key={idx}

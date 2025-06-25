@@ -11,7 +11,7 @@ const StyledTextArea = styled.textarea`
     resize: none;
     background: #F8F4E8;
     &::placeholder{
-        color:#d8d8d8
+        color:#919191
     }
 `;
 
