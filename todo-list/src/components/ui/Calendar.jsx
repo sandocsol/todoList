@@ -83,7 +83,8 @@ const DateCell = styled.div`
 
 const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
-const Calendar = () => {
+const Calendar = (props) => {
+    const {onChange, value} = props;
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
 
@@ -140,9 +141,27 @@ const Calendar = () => {
         ))}
       </DaysRow>
       <DatesGrid>
-        {dates.map((date, idx) => (
-          <DateCell key={idx}>{date}</DateCell>
-        ))}
+        {dates.map((date, idx) => {
+          const isSelected =
+            date &&
+            value &&
+            value.getFullYear() === year &&
+            value.getMonth() === month &&
+            value.getDate() === date;
+          return (
+            <DateCell
+              onClick={() => {
+                const newDate = new Date(year, month, date);
+                onChange(newDate);
+                value(newDate);
+              }}
+              style={isSelected ? { backgroundColor: "#C8EBB3", borderRadius: "50%" } : {}}
+              key={idx}
+            >
+              {date}
+            </DateCell>
+          );
+        })}
       </DatesGrid>
     </CalendarWrapper>
   );
