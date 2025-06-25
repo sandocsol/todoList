@@ -20,9 +20,32 @@ const Wrapper = styled.div`
 const CalendarWrapper = styled.div`
   position: absolute;
   top: 42px;
-  left: 63px;
+  left: 80px;
 `;
 
+const AddWrapper = styled.div`
+  position: absolute;
+  bottom: 61px;
+  left: 80px;
+  width: 500px;
+  height: 300px;
+  padding: 20px;
+  background: #FFFAF3;
+  color: #000;
+  border-radius: 56px;
+`;
+
+const TodoWrapper = styled.div`
+    position: absolute;
+  top: 47px;
+  right: 80px;
+  width: 1000px;
+  height: calc(100% - 47px - 61px);
+  padding: 20px;
+  background: #FFFAF3;
+  color: #000;
+  border-radius: 56px;
+`;
 
 function Todo() {
   const { user_id } = useParams(); // 주소에서 꺼냄
@@ -39,6 +62,11 @@ function Todo() {
         <CalendarWrapper>
           <Calendar />
         </CalendarWrapper>
+        <AddWrapper>
+
+        </AddWrapper>
+        <TodoWrapper>
+        </TodoWrapper>
       <ul>
         {todos.map(todo => <li key={todo.id}>{todo.content}</li>)}
       </ul>
