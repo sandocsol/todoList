@@ -75,7 +75,7 @@ export default function LoginPage() {
 
     const handleLogin = async () => {
     try {
-      const response = await axios.post('http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/users/login', {
+      const response = await axios.post('http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/users/login/', {
         username: id,
         password: password,
       });
@@ -103,7 +103,6 @@ export default function LoginPage() {
           <Rect style={{top: '154px', left: '23px'}}/>
           <Rect style={{top: '313px', left: '23px'}}/>
           <Rect style={{top: '387px', left: '23px'}}/>
-
             <p style={{fontSize: '20px', marginBottom: '15px', color: '#7d7d7d'}}>아이디</p>
           <TextInput placeholder="아이디를 입력해주세요" value={id} onChange={(e) => setId(e.target.value)} />
             <p style={{fontSize: '20px', marginTop: '15px', color: '#7d7d7d'}}>비밀번호</p>

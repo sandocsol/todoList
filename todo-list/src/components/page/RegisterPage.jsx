@@ -77,7 +77,7 @@ export default function RegisterPage() {
 
 
     try {
-      await axios.post('http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/users/register', {
+      await axios.post('http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/users/register/', {
         username: id,
         password,
       });

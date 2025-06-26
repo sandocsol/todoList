@@ -8,6 +8,8 @@ import background from '../../assets/image 2.png';
 import Calendar from "../ui/Calendar";
 import TextArea from "../ui/TextArea";
 import Button from "../ui/Button";
+import edit from "../../assets/edit.svg";
+import deleteIcon from "../../assets/delete.svg";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -49,7 +51,7 @@ const TodoWrapper = styled.div`
   right: 80px;
   width: 1000px;
   height: calc(100% - 47px - 61px);
-  padding: 20px;
+  padding: 40px;
   background: #FFFAF3;
   color: #000;
   border-radius: 56px;
@@ -60,6 +62,87 @@ const TodoContent = styled.div`
     height: 50px;
     display: flex;
     align-items: center;
+`;
+
+const CheckboxWrapper = styled.label`
+  display: inline-block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-right: 24px;
+  margin-left: 12px;
+`;
+
+const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+`;
+
+const StyledCheckbox = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #D70000;
+  background-color: transparent;
+
+  ${HiddenCheckbox}:checked + &::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 8px;
+    height: 14px;
+    border: solid #D70000;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+`;
+
+
+// const IconButton = styled.button`
+//   width: 32px;
+//   height: 32px;
+//   background-color: transparent;
+//   border: 2px solid #D70000;
+//   border-radius: 50%;
+//   color: #D70000;
+//   font-size: 16px;
+//   cursor: pointer;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin-left: 8px;
+
+//   &:hover {
+//     background-color: #D70000;
+//     color: white;
+//   }
+// `;
+
+const IconButton = styled.button`
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  margin-left: 8px;
+  margin-right: 8px;
+`;
+
+const EmojiBox = styled.div`
+  width: 35px;
+  height: 35px;
+  background-color: #ccc;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  font-size: 18px;
 `;
 
 function Todo() {
@@ -154,11 +237,13 @@ const [editEmoji, setEditEmoji] = useState("");
            
                 {todos.map((todo) => (
                         <TodoContent key={todo.todo_id}>
-                            <input
-                                type="checkbox"
-                                checked={todo.is_checked}
-                                onChange={() => handleCheck(todo.todo_id, todo.is_checked)}
-                            />
+                            <CheckboxWrapper>
+  <HiddenCheckbox
+    checked={todo.is_checked}
+    onChange={() => handleCheck(todo.todo_id, todo.is_checked)}
+  />
+  <StyledCheckbox />
+</CheckboxWrapper>
                             {editingId === todo.todo_id ? (
                                 <>
                                     <input
@@ -172,18 +257,25 @@ const [editEmoji, setEditEmoji] = useState("");
                                         maxLength={2}
                                         style={{ width: "40px", textAlign: "center" }}
                                     />
-                                <button onClick={handleUpdate}>저장</button>
-                                <button onClick={() => setEditingId(null)}>취소</button>
+                                <IconButton style={{color: "white", backgroundColor: "#D70000", border: "none", boxShadow: '3px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 20, width: 70, height:30}}
+                                onClick={handleUpdate}>저장</IconButton>
+                                <IconButton style={{color: "white", backgroundColor: "#D70000", border: "none", boxShadow: '3px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 20, width: 70, height:30}}
+                                onClick={() => setEditingId(null)}>취소</IconButton>
                             </>
                         ) : (
                             <>
                                 <div style={{ flex: 1 }}>{todo.content}</div>
-                                <button onClick={() => startEdit(todo)}>✏</button>
+                                <IconButton onClick={() => startEdit(todo)}>
+                                  <img src={edit} alt="수정" style={{ width: '24px', height: '24px' }} />
+                                </IconButton>
+                                <IconButton onClick={() => handleDelete(todo.todo_id)}>
+                                  <img src={deleteIcon} alt="수정" style={{ width: '24px', height: '24px' }} />
+                                </IconButton>
+                                <EmojiBox>{todo.emoji}</EmojiBox>
                             </>
                         )}
 
-                        <button onClick={() => handleDelete(todo.todo_id)}>🗑</button>
-                        <div style={{ margin: '0 10px' }}>{todo.emoji}</div>
+                        
                     </TodoContent>
                 ))}
         </TodoWrapper>
