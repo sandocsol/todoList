@@ -48,7 +48,7 @@ const Content = styled.div`
 
 const RegisterBox = styled.div`
   width: 796px;
-  height: 600px;
+  height: 479px;
   background: #F3ECE1;
   box-shadow: 2px 4px 9px 4px rgba(0, 0, 0, 0.25);
   border-radius: 52px;
@@ -105,13 +105,13 @@ export default function RegisterPage() {
         <RegisterBox>
           <Rect style={{top: '80px', left: '23px'}}/>
           <Rect style={{top: '154px', left: '23px'}}/>
-          <Rect style={{top: '228px', left: '23px'}}/>
-          <Rect style={{top: '400px', left: '23px'}}/>
+          <Rect style={{top: '313px', left: '23px'}}/>
+          <Rect style={{top: '387px', left: '23px'}}/>
 
-          <p style={{fontSize: '20px', marginBottom: '10px', color: '#7d7d7d'}}>아이디</p>
+          <p style={{fontSize: '20px', marginBottom: '15px', color: '#7d7d7d'}}>아이디</p>
           <TextInput placeholder="아이디를 입력해주세요" value={id} onChange={(e) => setId(e.target.value)} />
 
-          <p style={{fontSize: '20px', marginBottom: '10px', marginTop: '10px', color: '#7d7d7d'}}>비밀번호</p>
+          <p style={{fontSize: '20px', marginBottom: '15px', marginTop: '10px', color: '#7d7d7d'}}>비밀번호</p>
           <TextInput placeholder="비밀번호를 입력해주세요" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
 
           <Button color="green" onClick={handleRegister}>회원가입</Button>

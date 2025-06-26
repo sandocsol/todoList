@@ -76,8 +76,8 @@ export default function LoginPage() {
     const handleLogin = async () => {
     try {
       const response = await axios.post('http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/users/login', {
-        id,
-        password,
+        username: id,
+        password: password,
       });
 
       const { user_id } = response.data; // 서버에서 받은 user_id
