@@ -77,7 +77,7 @@ export default function RegisterPage() {
 
 
     try {
-      await axios.post('http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/users/register/', {
+      await axios.post('http://ec2-54-180-106-153.ap-northeast-2.compute.amazonaws.com:8000/api/users/register/', {
         username: id,
         password,
       });
@@ -111,7 +111,7 @@ export default function RegisterPage() {
           <p style={{fontSize: '20px', marginBottom: '15px', color: '#7d7d7d'}}>아이디</p>
           <TextInput placeholder="아이디를 입력해주세요" value={id} onChange={(e) => setId(e.target.value)} />
 
-          <p style={{fontSize: '20px', marginBottom: '15px', marginTop: '10px', color: '#7d7d7d'}}>비밀번호</p>
+          <p style={{fontSize: '20px', marginBottom: '15px', color: '#7d7d7d'}}>비밀번호</p>
           <TextInput placeholder="비밀번호를 입력해주세요" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
 
           <Button color="green" onClick={handleRegister}>회원가입</Button>

@@ -42,6 +42,7 @@ const AddWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 16px;
+  box-shadow: 2px 4px 9px 4px rgba(0, 0, 0, 0.25);
 
 `;
 
@@ -55,6 +56,7 @@ const TodoWrapper = styled.div`
   background: #FFFAF3;
   color: #000;
   border-radius: 56px;
+  box-shadow: 2px 4px 9px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const TodoContent = styled.div`
@@ -103,6 +105,14 @@ const StyledCheckbox = styled.span`
   }
 `;
 
+const TodoInput = styled.input`
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border: none;
+  margin-right: 8px;
+`;
+
 
 // const IconButton = styled.button`
 //   width: 32px;
@@ -134,8 +144,8 @@ const IconButton = styled.button`
 `;
 
 const EmojiBox = styled.div`
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   background-color: #ccc;
   border-radius: 6px;
   display: flex;
@@ -154,7 +164,7 @@ function Todo() {
   const fetchTodos = () => {
     const month = selectedDate.getMonth() + 1;
     const day = selectedDate.getDate();
-    axios.get(`http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/todos/${user_id}?month=${month}&day=${day}`)
+    axios.get(`http://ec2-54-180-106-153.ap-northeast-2.compute.amazonaws.com/api/todos/${user_id}?month=${month}&day=${day}`)
       .then((res) => setTodos(res.data))
       .catch((err) => console.error("불러오기 실패", err));
   };
@@ -165,7 +175,7 @@ function Todo() {
 
 const handleCheck = (todo_id, currentChecked) => {
   axios.patch(
-    `http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/todos/${user_id}/${todo_id}/check`,
+    `http://ec2-54-180-106-153.ap-northeast-2.compute.amazonaws.com/api/todos/${user_id}/${todo_id}/check`,
     { is_checked: !currentChecked }  
   )
     .then(() => {
@@ -177,7 +187,7 @@ const handleCheck = (todo_id, currentChecked) => {
 };
 
 const handleDelete = (todo_id) => {
-  axios.delete(`http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/todos/${user_id}/${todo_id}`)
+  axios.delete(`http://ec2-54-180-106-153.ap-northeast-2.compute.amazonaws.com/api/todos/${user_id}/${todo_id}`)
     .then(() => {
       fetchTodos();
     })
@@ -194,7 +204,7 @@ const startEdit = (todo) => {
 };
 
 const handleUpdate = () => {
-  const url = `http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/todos/${user_id}/${editingId}`;
+  const url = `http://ec2-54-180-106-153.ap-northeast-2.compute.amazonaws.com/api/todos/${user_id}/${editingId}`;
   console.log("PATCH URL:", url);
 
   axios.patch(url, { content: editContent , emoji: editEmoji })
@@ -222,7 +232,7 @@ const [editEmoji, setEditEmoji] = useState("");
             <Button style={{color: "white", backgroundColor: "#D70000", border: "none", boxShadow: '3px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 20, width: 103, height:46}}
              onClick={() => {
               const dateString = selectedDate.toLocaleDateString('sv-SE');
-              axios.post(`http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/todos/${user_id}`, { content, date: dateString,})
+              axios.post(`http://ec2-54-180-106-153.ap-northeast-2.compute.amazonaws.com:8000/api/todos/${user_id}`, { content, date: dateString,})
                 .then((res) => {
                   setTodos([...todos, res.data]);
                   setContent("");
@@ -246,11 +256,11 @@ const [editEmoji, setEditEmoji] = useState("");
 </CheckboxWrapper>
                             {editingId === todo.todo_id ? (
                                 <>
-                                    <input
+                                    <TodoInput
                                         value={editContent}
                                         onChange={(e) => setEditContent(e.target.value)}
                                     />
-                                    <input
+                                    <TodoInput
                                         value={editEmoji}
                                         onChange={(e) => setEditEmoji(e.target.value)}
                                         placeholder="😄"

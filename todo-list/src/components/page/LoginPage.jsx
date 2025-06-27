@@ -75,7 +75,7 @@ export default function LoginPage() {
 
     const handleLogin = async () => {
     try {
-      const response = await axios.post('http://ec2-13-124-6-127.ap-northeast-2.compute.amazonaws.com:8000/api/users/login/', {
+      const response = await axios.post('http://ec2-54-180-106-153.ap-northeast-2.compute.amazonaws.com:8000/api/users/login/', {
         username: id,
         password: password,
       });
